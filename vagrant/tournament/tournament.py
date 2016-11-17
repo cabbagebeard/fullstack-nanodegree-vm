@@ -109,5 +109,19 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-
+    standings = playerStandings()
+    pairing = []
+    pid1=None
+    pname1=None
+    for player in standings:
+        if pid1==None and pname1==None:
+            pid1=player[0]
+            pname1=player[1]
+        else:
+            pid2=player[0]
+            pname2=player[1]
+            pairing.append((pid1,pname1,pid2,pname2))
+            pid1=None
+            pname1=None
+    return(pairing)
 
