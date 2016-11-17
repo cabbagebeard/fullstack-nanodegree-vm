@@ -56,8 +56,7 @@ def registerPlayer(name):
     """
     conn = connect()
     db_cursor = conn.cursor()
-    query = "INSERT INTO players (name) VALUES ('%s');" % name
-    db_cursor.execute(query)
+    db_cursor.execute("INSERT INTO players (name) VALUES (%s)",(name,))
     conn.commit()
     conn.close()
 
@@ -77,8 +76,7 @@ def playerStandings():
     """
     conn = connect()
     db_cursor = conn.cursor()
-    query = "SELECT * FROM standing;"
-    db_cursor.execute(query)
+    db_cursor.execute("SELECT * FROM standing;")
     return db_cursor.fetchall()
     conn.close()
 
@@ -89,7 +87,12 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
- 
+    conn = connect()
+    db_cursor = conn.cursor()
+    db_cursor.execute("INSERT INTO matches (winner, loser) VALUES (%s, %s);",(winner, loser,))
+    conn.commit()
+    conn.close()
+
  
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
