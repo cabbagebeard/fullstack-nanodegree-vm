@@ -100,8 +100,8 @@ def Dispatcher(env, resp):
         return ['Not Found: ' + page]
 
 
-#Run this bad server only on localhost!
-#Had to change to port 5000 because Vagrant wouldn't let me vagrant up with 8000 or 8080
+# Run this bad server only on localhost!
+# Had to change to port 5000 because Vagrant wouldn't let me vagrant up with 8000 or 8080
 httpd = make_server('', 5000, Dispatcher)
 print "Serving HTTP on port 5000..."
 httpd.serve_forever()
